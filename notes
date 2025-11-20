@@ -1,0 +1,9 @@
+structure:
+-head
+-body
+    -sidebar
+        -menuitems
+    -mainContainer
+        -buttonslist
+        -video -mainContainer  
+            -video card
