@@ -7,3 +7,5 @@ structure:
         -buttonslist
         -video -mainContainer  
             -video card
+
+-debouncing is the skipping the events. ex-search in the searchbar
