@@ -9,3 +9,4 @@ structure:
             -video card
 
 -debouncing is the skipping the events. ex-search in the searchbar
+-if the cache size is >100 start removing from top
