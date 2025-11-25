@@ -10,22 +10,30 @@ const Head = () => {
     const [suggestions, setSuggetions] = useState([])
     const [showSuggestions, setShowSuggestions] = useState(false)
     const dispatch = useDispatch()
-    const searchCache=useSelector((store)=>store.search)
+    const searchCache = useSelector((store) => store.search)
 
     function handleClick() {
         dispatch(toggleMenu())
     }
 
     async function getSearchSuggestion() {
-        const data = await fetch(YOUTUBE_SEARCH_API + searchQuery)
-        const json = await data.json()
-        setSuggetions(json[1])
-        dispatch(cacheResults({[searchQuery]:json[1]}))
+        if (searchQuery.length > 0) {
+            const data = await fetch(YOUTUBE_SEARCH_API + searchQuery)
+            const json = await data.text()
+            const searchSuggestions = [];
+            json.split('[').forEach((ele, index) => {
+                if (!ele.split('"')[1] || index === 1) return;
+                return searchSuggestions.push(ele.split('"')[1]);
+            });
+            setSuggetions(searchSuggestions)
+            dispatch(cacheResults({ [searchQuery]: searchSuggestions }))
+        }
     }
 
     useEffect(() => {
         const timer = setTimeout(() => {
             if (searchCache[searchQuery]) {
+                console.log("true@@")
                 setSuggetions(searchCache[searchQuery])
             }
             else {
@@ -56,7 +64,7 @@ const Head = () => {
                     <div className="absolute bg-white py-2 px-2 shadow-lg rounded-lg w-[37rem] border border-gray-100">
                         <ul>
                             {
-                                suggestions.map((suggestion, index) => <li className="py-2 px-5 flex hover:bg-gray-100" key={index}> <img className="h-6 px-2" src="https://www.shareicon.net/data/128x128/2015/09/01/94156_search_512x512.png" alt="search" />{suggestion}</li>)
+                                suggestions?.map((suggestion, index) => <li className="py-2 px-5 flex hover:bg-gray-100" key={index}> <img className="h-6 px-2" src="https://www.shareicon.net/data/128x128/2015/09/01/94156_search_512x512.png" alt="search" />{suggestion}</li>)
                             }
                         </ul>
                     </div>}
