@@ -10,3 +10,11 @@ structure:
 
 -debouncing is the skipping the events. ex-search in the searchbar
 -if the cache size is >100 start removing from top
+-problems in live streaming:
+    -get live data
+        -websockets(bidirectional: two way handshaking b/w client and server)
+        -Api polling(unidirectly: data flows from server to UI)
+            -ex- in case of gmail we can use polling bcz there is no need of instant data updation we can do it even after 10s 0r 20s.
+            -ex- but in case of trading apps or whatsapp or live commentary cricket apps we should use websockets.
+            -ex- utube uses api polling.
+    -update on UI
