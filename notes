@@ -23,3 +23,5 @@ structure:
 even though when i change the theme it still calculate the prime value everytime bczon toggling the component will re-render everytime.
 
 -useCallback() hook lets u cache a function definition between re-renders.
+
+-useRef() lets u reference a value that's not needed for rendering.
