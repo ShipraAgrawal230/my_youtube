@@ -34,3 +34,32 @@ export function generateRandomnStrings(length) {
     }
     return result;
 }
+
+export function findNthPrime(n) {
+  if (n <= 0) {
+    return "Input must be a positive integer.";
+  }
+
+  let count = 0;
+  let num = 1;
+
+  while (count < n) {
+    num++; 
+    let isPrime = true;
+    if (num <= 1) {
+      isPrime = false;
+    } else {
+      for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+          isPrime = false;
+          break;
+        }
+      }
+    }
+
+    if (isPrime) {
+      count++;
+    }
+  }
+  return num;
+}

@@ -7,6 +7,7 @@ import appStore from "./utils/appStore";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import WatchPage from "./components/WatchPage";
 import MainContainer from "./components/MainContainer";
+import ExtraHooks from "./components/ExtraHooks";
 
 const App = () => {
     return (
@@ -29,6 +30,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/",
                 element: <MainContainer />
+            },
+            {
+                path:"/hooks",
+                element:<ExtraHooks/>
             }
         ]
     }
